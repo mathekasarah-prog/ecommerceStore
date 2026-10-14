@@ -25,10 +25,13 @@ function App() {
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/products" element={<Products />} />
-      <Route path="/products/:id" element={<ProductDetails />} />
+
+      <Route path="/products/:id" element={<ProductDetails />}>
       <Route index element={<Overview />} />
-      <Route path="/products/:id/reviews" element={<Reviews />} />
-      <Route path="/products/:id/specifications" element={<Specifications />} />
+      <Route path="reviews" element={<Reviews />} />
+      <Route path="specifications" element={<Specifications />} />
+     </Route>
+      
     </Routes>
     </>
   )
