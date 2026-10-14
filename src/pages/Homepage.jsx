@@ -16,6 +16,9 @@ function Homepage() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const featured = products.find((p) => p.id === 2);
+
+
   useEffect(() => {
     async function load() {
       try {
@@ -70,11 +73,16 @@ function Homepage() {
     </div>
     </div> 
 
-      <img
-         src="https://images.unsplash.com/photo-1612832021080-1f3e5c8b6f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-         alt="Featured product"
-         className="w-full max-w-sm mx-auto drop-shadow-2xl"
-          />
+    {featured && (
+  <Link to={`/products/${featured.id}`}>
+    <img
+      src={featured.image}
+      alt={featured.title}
+      className="max-h-80 mx-auto object-contain drop-shadow-2xl"
+    />
+  </Link>
+)}
+  
         </div>
       </section>
 
@@ -130,13 +138,13 @@ function Homepage() {
                 className="overflow-hidden transition hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="bg-gray-50 aspect-square flex items-center justify-center">
-                  <img src={p.thumbnail} alt={p.title} className="h-full object-contain" />
+                  <img src={p.image} alt={p.title} className="h-full object-contain" />
                 </div>
                 <CardContent className="p-4">
                   <p className="font-semibold text-gray-900 truncate">{p.title}</p>
                   <div className="flex items-center gap-1 text-sm text-yellow-500 mt-1">
                     <Star size={14} fill="currentColor" />
-                    <span className="text-gray-600">{p.rating}</span>
+                    <span className="text-gray-600">{p.rating.rate}</span>
                   </div>
                   <div className="mt-3 flex items-center justify-between">
                     <span className="text-lg font-bold text-indigo-700">${p.price}</span>
