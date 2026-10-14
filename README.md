@@ -1,127 +1,121 @@
-# Sarah's Store
+# Driply 💧
 
-A React e-commerce store where users can browse products, search and filter them, view product details, add items to a cart, and check out through a protected page. Built as a bootcamp project to practice routing, global state with Context API, data fetching, and protected routes.
+Driply is a modern, responsive React-based e-commerce web application. It allows users to browse products, inspect detailed views, manage a shopping cart, and navigate a protected checkout flow.
 
-**Live demo:** https://your-deployed-site-url-here
-**Repository:** https://github.com/mathekasarah-prog/ecommerceStore.git
+---
 
-## Features
+## ✨ Features
 
-- Browse all products fetched from the [DummyJSON API](`https://fakestoreapi.com/products/${id}`)
-- Search products by name (controlled input)
-- Filter products by category, combined with search
-- Product details page with nested tabs: Overview, Reviews, Specifications
-- Related products shown on the details page
-- Shopping cart with add, remove, and quantity update buttons
-- Cart is saved in `localStorage`, so it survives a page refresh
-- Login form with validation, using the DummyJSON auth endpoint
-- Protected checkout page: logged-out users are redirected to the login page, then returned to checkout after logging in
-- Checkout form with validation and an order summary
-- Loading and error states for every data fetch
-- Responsive layout styled with Tailwind CSS and shadcn/ui
+* **Homepage**: Landing page featuring a prominent "Shop Now" call-to-action.
+* **Product Listing**: Dynamically fetches and displays products from the [Fake Store API](https://fakestoreapi.com).
+* **Product Details**: Dedicated view for individual product information.
+* **Product Tabs**: Organized sections for **Overview**, **Reviews**, and **Specifications**.
+* **Search & Filtering**: Real-time product search by title and category filtering.
+* **Shopping Cart**: Full cart management (add items, remove items, and update quantities).
+* **Cart Summary**: Automatic calculation of item subtotals and total pricing.
+* **Authentication Flow**: Basic login demonstration with state persistence.
+* **Protected Checkout**: Automatically redirects unauthenticated users to the login page.
+* **Responsive UI**: Built using [Tailwind CSS](https://tailwindcss.com) and [shadcn/ui](https://shadcn.com) components.
 
-## Tech Stack
+---
 
-- [React](https://react.dev/) (JavaScript) with [Vite](https://vite.dev/)
-- [React Router](https://reactrouter.com/) for routing, dynamic routes, and nested routes
-- Context API for global state (cart, auth, filters)
-- [Tailwind CSS](https://tailwindcss.com/) and [shadcn/ui](https://ui.shadcn.com/) for styling and components
-- [DummyJSON](https://dummyjson.com/) as the data source (using `fetch`)
+## 🛠️ Technologies Used
 
-## Routes
+* **Frontend Library**: React (Vite)
+* **Language**: JavaScript (ES6+)
+* **Styling**: Tailwind CSS & shadcn/ui
+* **Routing**: React Router
+* **State Management**: React Context API (`AuthContext`, `CartContext`)
+* **Data Fetching**: Axios
+* **API Source**: Fake Store API
+* **Version Control**: Git & GitHub
 
-| Path                              | Page                              | Access     |
-| --------------------------------- | --------------------------------- | ---------- |
-| `/`                               | Home                              | Public     |
-| `/products`                       | Product list with search/filters  | Public     |
-| `/products/:id`                   | Product details (Overview tab)    | Public     |
-| `/products/:id/reviews`           | Product details (Reviews tab)     | Public     |
-| `/products/:id/specifications`    | Product details (Specs tab)       | Public     |
-| `/cart`                           | Shopping cart                     | Public     |
-| `/login`                          | Login                             | Public     |
-| `/checkout`                       | Checkout                          | Logged in  |
+---
 
-## State Management
+## 📁 Project Structure
 
-Three context providers wrap the app in `main.jsx`:
-
-- **AuthContext**: the logged-in user, `login`, and `logout`. The user is stored in `localStorage`.
-- **CartContext**: cart items, `addToCart`, `removeFromCart`, `updateQuantity`, `clearCart`, and computed totals. Saved in `localStorage`.
-- **FilterContext**: the search text and selected category, shared between the search bar, the category filter, and the products page.
-
-## Project Structure
-
-```
+```text
 src/
-  components/
-    ui/                  shadcn/ui components
-    CartItem.jsx
-    CategoryFilter.jsx
-    Navbar.jsx
-    ProductCard.jsx
-    ProductList.jsx
-    ProtectedRoute.jsx
-    RelatedProducts.jsx
-    SearchBar.jsx
-  context/
-    AuthContext.jsx
-    CartContext.jsx
-    FilterContext.jsx
-  pages/
-    details/
-      Overview.jsx
-      Reviews.jsx
-      Specifications.jsx
-    Cart.jsx
-    Checkout.jsx
-    Home.jsx
-    Login.jsx
-    ProductDetails.jsx
-    Products.jsx
-  App.jsx
-  main.jsx
+├── components/
+│   ├── ui/
+│   ├── Navbar.jsx
+│   ├── ProductCard.jsx
+│   └── ProtectedCheckout.jsx
+├── context/
+│   ├── AuthContext.jsx
+│   └── CartContext.jsx
+├── pages/
+│   ├── Homepage.jsx
+│   ├── Products.jsx
+│   ├── ProductDetails.jsx
+│   ├── Cart.jsx
+│   ├── Checkout.jsx
+│   ├── Login.jsx
+│   └── product-tabs/
+│       ├── Overview.jsx
+│       ├── Reviews.jsx
+│       └── Specifications.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
 ```
 
-## Getting Started
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18 or newer
-- npm
+Make sure you have the following installed on your machine:
+* [Node.js](https://nodejs.org) (v16 or higher recommended)
+* `npm` (comes with Node.js)
+* [Git](https://git-scm.com)
 
 ### Installation
 
-```bash
-git clone https://github.com/mathekasarah-prog/ecommerceStore.git
-cd your-repo-name
-npm install
-npm run dev
-```
+1. **Clone the repository:**
+   ```bash
+   git clone YOUR_GITHUB_REPOSITORY_URL
+   ```
 
-Then open the local URL shown in the terminal (usually `http://localhost:5173`).
+2. **Navigate into the project folder:**
+   ```bash
+   git clone YOUR_GITHUB_REPOSITORY_URL
+   cd ecommerceStore
+   ```
 
-### Build for production
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run build
-npm run preview
-```
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
+5. Open your browser and navigate to the local URL displayed in your terminal (typically `http://localhost:5173`).
 
-## Deployment
+---
 
-Because this is a single-page app using React Router, the host needs a rewrite rule so that refreshing a page like `/products/1` does not return a 404.
+## 🌐 Product Data
 
-- **Vercel:** add a `vercel.json` with `{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }`
+Driply retrieves product information dynamically from the public [Fake Store API](https://fakestoreapi.com). This provides sample e-commerce data including titles, prices, categories, images, and descriptions.
 
-## Possible Future Improvements
+---
 
-- Toast notifications when adding to cart
-- Wishlist feature
-- Pagination for the product list
-- Real payment and order history
+## 🤝 Contributing & Collaboration
 
-## Acknowledgements
+Contributions, issues, and feature requests are welcome! 
 
-- Product data from [DummyJSON](https://dummyjson.com/)
-- UI components from [shadcn/ui](https://ui.shadcn.com/)
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).

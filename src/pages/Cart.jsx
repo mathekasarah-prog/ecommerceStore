@@ -1,4 +1,6 @@
 import { useCart } from '../context/CartContext';
+import { Button } from '../components/ui/button';
+import { Link } from 'react-router-dom';
 
 function Cart() {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
@@ -52,6 +54,17 @@ return (
           </button>
         </div>
       ))}
+    </div>
+    <div className = "mt-8 flex flex-col items-end gap-4">
+      <h2 className = "text-lg font-semibold">Total: ${totalPrice.toFixed(2)}</h2>
+      <div className = "flex flex-wrap justify-end gap-4">
+      <Button asChild variant="outline">
+        <Link to="/products">Continue Shopping</Link>
+      </Button>
+    <Button asChild size="lg">
+      <Link to="/checkout">Proceed to Checkout</Link>
+    </Button>
+    </div>
     </div>
   </div>
 )
